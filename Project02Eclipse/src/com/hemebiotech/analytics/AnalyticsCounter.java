@@ -1,43 +1,34 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+/**
+ * This class is the entry point into the application.It allows to execute the 2
+ * methods "GetSymptoms()" and "exportSymptoms()". It is possible to modify in
+ * this class each of the 2 arguments. In the new object "readsymptoms" there is
+ * one argument that contains file "symptoms.txt" to read symptoms. In the new
+ * object "exportsymptoms" there is one argument that contains file
+ * "results.out.txt" to write results in it.
+ * 
+ * @author Vanessa DREUX
+ * @version 1.0
+ */
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
-	public static void main(String args[]) throws Exception {
+	/**
+	 * @param args Java main method accepts a single argument of type String array.
+	 */
+	public static void main(String args[]) {
 		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
+		ReadSymptomDataFromFile readsymptoms = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		readsymptoms.GetSymptoms();
 
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
+		// then rearrange data
+		/*
+		 * CleanSymptomDataFromFile cleanSymptoms = new
+		 * CleanSymptomDataFromFile("Symptoms.txt"); cleansymptoms.clean();
+		 */
 
-			line = reader.readLine();	// get another symptom
-		}
-		
 		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
+		ExportSymptomDataFromFile exportsymptoms = new ExportSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		exportsymptoms.exportSymptoms("results.out.txt");
 	}
 }
