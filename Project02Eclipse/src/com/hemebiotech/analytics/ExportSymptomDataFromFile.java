@@ -44,8 +44,7 @@ public class ExportSymptomDataFromFile implements ISymptomExport {
 			e.printStackTrace();
 		}
 		BufferedWriter out = new BufferedWriter(resultsout);
-		// Creation of "key" object to retrieve symptoms as defined in cleanSymptoms()
-		// method
+		// Creation of "key" object and using entrySet() to get the set view with format {symptom=occurrence}
 		for (Object key : cleanData.cleanSymptoms().entrySet()) {
 			// try statement to define block of code (between try and catch) to be tested
 			// for errors
@@ -63,9 +62,6 @@ public class ExportSymptomDataFromFile implements ISymptomExport {
 		// try statement to define block of code (between try and catch) to be tested
 		// for errors
 		try {
-			// flush the content of the buffer to the output stream to force write of the
-			// file
-			out.flush();
 			// Close the stream
 			out.close();
 		} catch (IOException e) {
