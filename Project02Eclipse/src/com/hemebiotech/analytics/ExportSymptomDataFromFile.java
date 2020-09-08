@@ -64,6 +64,7 @@ public class ExportSymptomDataFromFile implements ISymptomExport {
 		try {
 			// Close the stream
 			out.close();
+			System.out.println("Export généré!");
 		} catch (IOException e) {
 			// Prints a stack trace for the "resultsout" object on the standard error output
 			// stream
