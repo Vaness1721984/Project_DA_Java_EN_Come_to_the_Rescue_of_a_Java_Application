@@ -20,6 +20,5 @@ public class AnalyticsCounter {
 		// Generate output
 		ExportSymptomDataFromFile exportsymptoms = new ExportSymptomDataFromFile("Project02Eclipse/symptoms.txt");
 		exportsymptoms.exportSymptoms("results.out.txt");
-		System.out.println("Export généré!");
 	}
 }
